@@ -1,0 +1,21 @@
+name: etherpad-lite
+version: '1.6.0' 
+summary: Etherpad: Really real-time collaborative document editing.
+description: |
+  Etherpad is a really-real time collaborative editor maintained by the Etherpad Community.
+  Etherpad is written in JavaScript (99.9%) on both the server and client so it's easy for developers to maintain and add new features. Because of this Etherpad has tons of customizations that you can leverage.
+
+grade: devel 
+confinement: devmode
+
+apps:
+  etherpad-lite:
+    command: bin/run.sh --background --make-pidfile /var/run/etherpad-lite.pid # takes some time at the first start, ofcourse
+    daemon: simple
+    stop-command: ./stop.sh
+
+parts:
+  etherpart-lite:
+    plugin: node
+    node-engine: 6.9.1 # use latest stable release
+    source: https://github.com/ether/etherpad-lite.git
